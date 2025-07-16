@@ -7,4 +7,4 @@ torch
 python-dotenv
 flask
 flask-cors
-google-generativeai
+google-genai
