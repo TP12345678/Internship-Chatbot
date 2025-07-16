@@ -1,5 +1,5 @@
-from langchain.vectorstores import Chroma
-from langchain.embeddings import HuggingFaceEmbeddings
+from langchain_huggingface import HuggingFaceEmbeddings
+from langchain_chroma import Chroma
 from dotenv import load_dotenv
 import os
 import google.genai as genai
@@ -69,3 +69,17 @@ Please rewrite the answer in a clear, helpful, and chatbot-friendly tone.
             return f"AskIDC: (Gemini error) Showing raw answer instead.\n{result.page_content}"
     else:
         return "AskIDC: No answer found."
+
+'''
+if __name__ == "__main__":
+    print("Script Running")
+
+    while True:
+        user_query = input("You: ").strip()
+        if user_query.lower() in {"exit", "quit"}:
+            print("Goodbye!")
+            break
+        
+        response = ask_idc_chatbot(user_query)
+        print(response)
+'''     
