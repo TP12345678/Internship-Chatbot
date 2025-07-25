@@ -4,12 +4,16 @@ from flask_cors import CORS
 import sqlite3
 
 app = Flask(__name__)
-CORS(app)  
+CORS(app)
 
 def get_db():
     conn = sqlite3.connect("users.db")
     conn.row_factory = sqlite3.Row
     return conn
+
+@app.route("/")
+def home():
+    return "IDC Chatbot API is running."
 
 @app.route("/register", methods=["POST"])
 def register_user():
@@ -31,20 +35,23 @@ def register_user():
 
     return jsonify({"message": "User registered successfully."})
 
-@app.route("/")
-def home():
-    return "IDC Chatbot API is running."
-
 @app.route("/ask", methods=["POST"])
 def ask():
     data = request.get_json()
+    email = data.get("email")
+    query = data.get("query")
 
-    if not data or "query" not in data:
-        return jsonify({"error": "Missing query in request"}), 400
+    if not email or not query:
+        return jsonify({"error": "Email and query are required."}), 400
 
-    user_query = data["query"]
-    response = ask_idc_chatbot(user_query)
+    conn = get_db()
+    user = conn.execute("SELECT * FROM users WHERE email = ?", (email,)).fetchone()
+    conn.close()
 
+    if not user:
+        return jsonify({"error": "Email not registered."}), 403
+
+    response = ask_idc_chatbot(query)
     return jsonify({"response": response})
 
 if __name__ == "__main__":
