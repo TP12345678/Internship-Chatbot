@@ -1,0 +1,13 @@
+$sqlite3 chatbot_users.db
+SQLite version 3.45.3 2024-04-15 13:34:05
+Enter ".help" for instructions
+Enter SQL statements terminated with a ";"
+sqlite>
+
+CREATE TABLE user_info(
+ID INT NOT NULL,
+name TEXT NOT NULL,
+email TEXT NOT NULL,
+PRIMARY KEY (ID, email) 
+);
+

@@ -57,7 +57,7 @@ if not sym_spell.load_dictionary(dictionary_path, term_index=0, count_index=1):
     print("ERROR: Frequency dictionary not found. Please download and place it in the working directory.")
     sys.exit(1)
 
-# Utility functions
+# Utility functionsw
 def cosine_similarity(vec1, vec2):
     vec1, vec2 = np.array(vec1), np.array(vec2)
     return np.dot(vec1, vec2) / (np.linalg.norm(vec1) * np.linalg.norm(vec2))
@@ -78,10 +78,13 @@ def correct_spelling(text):
 
 # Predefined answers
 predefined_answers = {
-    "who are you": "IDC Technologies is a global leader in IT staffing and workforce solutions, delivering talent across multiple industries.",
+"hi": "Hi. I am the IDC bot, how may I help you?",
+    "hello": "Hi. I am the IDC bot, how may I help you?",
+    "who are you": "I am the IDC bot who is happy to assist you.",
     "what do you do": "IDC Technologies provides staffing, consulting, and project-based solutions tailored for the IT and engineering sectors.",
     "what are your accomplishments": "IDC Technologies' accomplishments include winning several prestigious awards such as 'Best Staffing Partner 2023'. To know more please check our 'Awards' section.",
-    "How can I contact IDC?":"For inquiries regarding IDC, kindly refer to our dedicated contact page or direct your correspondence to himanshu@idctechnologies.com.",
+    "how can i contact idc?": "For inquiries regarding IDC, kindly refer to our dedicated contact page or direct your correspondence to himanshu@idctechnologies.com.",
+    "case study":"To know more about all of our case studies please check out our 'Case Studies' page."
 }
 
 # Chatbot logic

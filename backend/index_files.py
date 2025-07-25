@@ -6,8 +6,8 @@ import pytesseract
 import io
 import fitz  # PyMuPDF
 from langchain_community.vectorstores import Chroma
-from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain_huggingface import HuggingFaceEmbeddings
+import re
 
 # Resolve data folder path relative to this script
 DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "data"))
@@ -15,11 +15,35 @@ DATA_DIR = os.path.abspath(os.path.join(os.path.dirname(__file__), "data"))
 if not os.path.exists(DATA_DIR):
     raise FileNotFoundError(f"DATA_DIR not found at: {DATA_DIR}")
 
+def clean_text_block(text):
+    # Remove slide markers like [Slide 1]
+    text = re.sub(r"\[Slide \d+\]", "", text)
+
+    # Remove common unwanted headers or short lines
+    lines = text.splitlines()
+    cleaned_lines = []
+    for line in lines:
+        line_strip = line.strip()
+        if not line_strip:
+            continue
+        # Skip common slide titles/headers you don't want
+        if re.match(r"^(Case Study|Thank You|Summary|Overview|Technologies Used|References|Contents|Agenda)$", line_strip, re.IGNORECASE):
+            continue
+        # Skip very short or punctuation-only lines
+        if len(line_strip) < 5 and re.match(r"^[\[\]\|\-:]*$", line_strip):
+            continue
+        cleaned_lines.append(line_strip)
+
+    cleaned_text = "\n".join(cleaned_lines).strip()
+    return cleaned_text
+
 def extract_text_from_csv(file_path):
     try:
         df = pd.read_csv(file_path)
         if "question" in df.columns and "answer" in df.columns:
-            return (df["question"].astype(str) + " " + df["answer"].astype(str)).tolist()
+            combined = (df["question"].astype(str) + " " + df["answer"].astype(str)).tolist()
+            cleaned = [clean_text_block(text) for text in combined if clean_text_block(text)]
+            return cleaned
         else:
             print(f"Skipping {file_path}: missing 'question' or 'answer' column")
             return []
@@ -32,7 +56,7 @@ def extract_text_from_ppt_with_ocr(file_path):
     extracted_texts = []
 
     for slide_num, slide in enumerate(prs.slides):
-        slide_text = f"[Slide {slide_num+1}]\n"
+        slide_text = ""
 
         for shape in slide.shapes:
             try:
@@ -51,15 +75,18 @@ def extract_text_from_ppt_with_ocr(file_path):
             except Exception as e:
                 print(f"Error processing shape in slide {slide_num+1}: {e}")
 
-        if slide_text.strip():
-            extracted_texts.append(slide_text.strip())
+        cleaned_text = clean_text_block(slide_text)
+        if cleaned_text:
+            extracted_texts.append(cleaned_text)
 
     return extracted_texts
 
 def extract_text_from_txt(file_path):
     try:
         with open(file_path, "r", encoding="utf-8") as f:
-            return [f.read().strip()]
+            text = f.read().strip()
+            cleaned = clean_text_block(text)
+            return [cleaned] if cleaned else []
     except Exception as e:
         print(f"Error reading TXT: {e}")
         return []
@@ -85,8 +112,9 @@ def extract_text_from_pdf(file_path):
                 except Exception as e:
                     print(f"OCR failed on image in PDF page {page_num+1}: {e}")
 
-            if page_combined_text.strip():
-                extracted_texts.append(page_combined_text)
+            cleaned_page_text = clean_text_block(page_combined_text)
+            if cleaned_page_text:
+                extracted_texts.append(cleaned_page_text)
 
     except Exception as e:
         print(f"Error reading PDF: {e}")
@@ -113,6 +141,11 @@ for filename in os.listdir(DATA_DIR):
         all_text_blocks.extend(extract_text_from_pdf(file_path))
     else:
         print(f"⏭ Skipping unsupported file: {filename}")
+
+# Filter out very short text blocks
+all_text_blocks = [t for t in all_text_blocks if len(t) > 20]
+
+print(f"Total cleaned text blocks to index: {len(all_text_blocks)}")
 
 # Embed and save to Chroma
 print("Creating vector DB...")
