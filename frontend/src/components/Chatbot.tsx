@@ -8,6 +8,9 @@ import ChatMessageBubble, {
 	type Message,
 } from "@/components/ChatMessageBubble"; // Adjust path if needed
 
+const STORAGE_KEY = "chatbot_user_details";
+const EXPIRY_DAYS = 3;
+
 export default function Chatbot() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [value, setValue] = useState("");
@@ -96,13 +99,79 @@ export default function Chatbot() {
 	};
 
 	// Handler for the verification form
-	const handleVerificationSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+	const handleVerificationSubmit = async (
+		e: React.FormEvent<HTMLFormElement>
+	) => {
 		e.preventDefault();
 		if (userName.trim() && userEmail.trim()) {
-			setIsVerified(true);
-			startChat(); // Initialize chat messages after verification
+			try {
+				await fetch("http://127.0.0.1:5000/register", {
+					method: "POST",
+					headers: {
+						"Content-Type": "application/json",
+					},
+					body: JSON.stringify({ name: userName, email: userEmail }),
+				});
+				console.log("User details successfully sent to backend.");
+			} catch (error) {
+				console.error("Failed to register user on the backend:", error);
+				// We proceed even if the backend call fails, so the user can still chat.
+			}
+
+			const now = new Date();
+			const expiryTime = now.getTime() + EXPIRY_DAYS * 24 * 60 * 60 * 1000;
+
+			const item = {
+				name: userName,
+				email: userEmail,
+				expiry: expiryTime,
+			};
+			try {
+				localStorage.setItem(STORAGE_KEY, JSON.stringify(item));
+				setIsVerified(true);
+				startChat();
+			} catch (error) {
+				console.error("Could not write to localStorage:", error);
+				// Fallback for private browsing mode, etc.
+				setIsVerified(true);
+				startChat();
+			}
 		}
 	};
+
+	useEffect(() => {
+		if (isOpen) {
+			try {
+				const itemStr = localStorage.getItem(STORAGE_KEY);
+				if (!itemStr) {
+					return; // No stored data
+				}
+
+				const item = JSON.parse(itemStr);
+				const now = new Date();
+
+				// Compare the expiry time with the current time
+				if (now.getTime() > item.expiry) {
+					// If the item is expired, remove it from storage and do nothing
+					localStorage.removeItem(STORAGE_KEY);
+				} else {
+					// If the item is not expired, set the state and verify the user
+					setUserName(item.name);
+					setUserEmail(item.email);
+					setIsVerified(true);
+				}
+			} catch (error) {
+				console.error("Could not access localStorage:", error);
+			}
+		}
+	}, [isOpen]);
+
+	useEffect(() => {
+		if (isVerified && userName) {
+			startChat();
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [isVerified, userName]);
 
 	return (
 		<>
@@ -158,14 +227,14 @@ export default function Chatbot() {
 								{/* Chat Input Form */}
 								<form
 									onSubmit={handleSubmit}
-									className="p-3 bg-white/40 backdrop-blur-md border-t border-white/30 flex gap-2"
+									className="p-3 bg-gradient-to-tr from-blue-600/50 to-purple-500/50 backdrop-blur-sm border-t border-white/30 flex gap-2"
 								>
 									<Input
 										value={value}
 										onChange={e => setValue(e.target.value)}
 										type="text"
 										placeholder="Type a message..."
-										className="flex-1 bg-white/60 border-none px-4 py-2 rounded-sm text-sm outline-none focus:ring-2 focus:ring-blue-400"
+										className="flex-1 bg-blue-800/30 border-none placeholder:text-white text-white px-4 py-2 rounded-sm text-sm outline-none focus:ring-2 focus:ring-blue-400"
 									/>
 									<Button
 										size="sm"
