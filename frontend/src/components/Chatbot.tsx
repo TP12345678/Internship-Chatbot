@@ -65,7 +65,7 @@ export default function Chatbot() {
 				// Include user details in the request body
 				body: JSON.stringify({
 					query: messageText,
-					user: { name: userName, email: userEmail },
+					email: userEmail ,
 				}),
 			});
 			const data = await response.json();
