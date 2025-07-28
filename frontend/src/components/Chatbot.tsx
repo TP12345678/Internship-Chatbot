@@ -10,7 +10,7 @@ import ChatMessageBubble, {
 
 const STORAGE_KEY = "chatbot_user_details";
 const EXPIRY_DAYS = 3;
-
+const apiUrl = import.meta.env.FLASK_BACKEND_URL || "http://127.0.0.1:5000";
 export default function Chatbot() {
 	const [isOpen, setIsOpen] = useState(false);
 	const [value, setValue] = useState("");
@@ -59,7 +59,7 @@ export default function Chatbot() {
 		setIsLoading(true);
 
 		try {
-			const response = await fetch("http://127.0.0.1:5000/ask", {
+			const response = await fetch("/ask", {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				// Include user details in the request body
@@ -105,7 +105,7 @@ export default function Chatbot() {
 		e.preventDefault();
 		if (userName.trim() && userEmail.trim()) {
 			try {
-				await fetch("http://127.0.0.1:5000/register", {
+				await fetch(`${apiUrl}/register`, {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
@@ -186,7 +186,7 @@ export default function Chatbot() {
 			{isOpen && (
 				<div className="fixed bottom-24 right-6 w-[360px] h-[520px] z-50">
 					<div
-						className="flex flex-col h-full rounded-lg border-none shadow-2xl overflow-hidden backdrop-blur-xl"
+						className="flex flex-col h-full rounded-lg border-none shadow-2xl overflow-hidden backdrop-blur-lg bg-white/80"
 						style={{ border: "none", boxShadow: "0 16px 48px 0 #4f51d550" }}
 					>
 						<div className="flex items-center justify-between px-5 py-3 bg-gradient-to-tr from-blue-600/50 to-purple-500/50 backdrop-blur-sm border-b border-white/20">
@@ -227,7 +227,7 @@ export default function Chatbot() {
 								{/* Chat Input Form */}
 								<form
 									onSubmit={handleSubmit}
-									className="p-3 bg-gradient-to-tr from-blue-600/50 to-purple-500/50 backdrop-blur-sm border-t border-white/30 flex gap-2"
+									className="p-3 border-t border-blue-800/50 flex gap-2"
 								>
 									<Input
 										value={value}
@@ -240,7 +240,7 @@ export default function Chatbot() {
 										size="sm"
 										type="submit"
 										disabled={isLoading}
-										className="bg-gradient-to-tr from-blue-500 to-purple-500 text-white hover:bg-purple-600 px-4 rounded-sm h-full shadow"
+										className="bg-blue-500  text-white hover:bg-purple-600 px-4 rounded-sm h-full shadow"
 									>
 										Send
 									</Button>
@@ -260,25 +260,37 @@ export default function Chatbot() {
 										onSubmit={handleVerificationSubmit}
 										className="flex flex-col gap-4"
 									>
-										<Input
-											type="text"
-											placeholder="Your Name"
-											value={userName}
-											onChange={e => setUserName(e.target.value)}
-											required
-											className="bg-gray-800/30 border-gray-700/40 placeholder:text-white/70 text-gray-800 rounded-lg focus:ring-2 focus:ring-white"
-										/>
-										<Input
-											type="email"
-											placeholder="Your Email"
-											value={userEmail}
-											onChange={e => setUserEmail(e.target.value)}
-											required
-											className="bg-gray-800/30 border-gray-700/40 placeholder:text-white/70 text-gray-800 rounded-lg focus:ring-2 focus:ring-white"
-										/>
+										<div className="flex flex-col gap-2">
+											<label className="text-sm text-gray-800" htmlFor="name">
+												Name
+											</label>
+											<Input
+												id="name"
+												type="text"
+												placeholder="John Doe"
+												value={userName}
+												onChange={e => setUserName(e.target.value)}
+												required
+												className="border-blue-700 placeholder:text-gray-600 text-gray-800 rounded-sm focus:ring-2 focus:ring-white"
+											/>
+										</div>
+										<div className="flex flex-col gap-2">
+											<label className="text-sm text-gray-800" htmlFor="email">
+												Email
+											</label>
+											<Input
+												id="email"
+												type="email"
+												placeholder="john.doe@example.com"
+												value={userEmail}
+												onChange={e => setUserEmail(e.target.value)}
+												required
+												className="border-blue-700 placeholder:text-gray-600 text-gray-800 rounded-sm focus:ring-2 focus:ring-white"
+											/>
+										</div>
 										<Button
 											type="submit"
-											className="bg-blue-800 text-white font-bold hover:bg-blue-700 cursor-pointer mt-2 rounded-lg py-2"
+											className="bg-blue-800 text-white font-bold hover:bg-blue-700 cursor-pointer mt-2 rounded-sm py-2"
 										>
 											Start Chat
 										</Button>
