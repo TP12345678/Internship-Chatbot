@@ -25,15 +25,27 @@ class VectorDBManager:
             print(f"Error getting/creating ChromaDB collection: {e}")
             return None
 
-    def add_documents(self, embeddings, chunks):
+    def add_documents(self, embeddings, chunks, force_reingestion=True): 
         """Adds documents (chunks and their embeddings) to the ChromaDB collection."""
         if not self.collection:
             print("ChromaDB collection not initialized. Cannot add documents.")
             return
 
-        if self.collection.count() > 0:
-            print(f"ChromaDB collection '{COLLECTION_NAME}' already contains {self.collection.count()} documents. Skipping re-ingestion.")
+        if self.collection.count() > 0 and not force_reingestion:
+            print(f"ChromaDB collection '{COLLECTION_NAME}' already contains {self.collection.count()} documents. Skipping re-ingestion. To force re-ingestion, set force_reingestion=True.")
             return
+        
+        # If force_reingestion is True, or collection is empty, clear it first
+        if self.collection.count() > 0 and force_reingestion:
+            print(f"Force re-ingestion requested. Deleting existing {self.collection.count()} documents from '{COLLECTION_NAME}'.")
+            # A simpler way to clear all documents is to delete and re-create the collection
+            self.client.delete_collection(name=COLLECTION_NAME)
+            self.collection = self.client.get_or_create_collection(
+                name=COLLECTION_NAME,
+                embedding_function=self.embedding_function
+            )
+            print(f"Collection '{COLLECTION_NAME}' re-created.")
+
 
         ids = [chunk["id"] for chunk in chunks]
         documents = [chunk["text"] for chunk in chunks]
@@ -41,13 +53,17 @@ class VectorDBManager:
 
         try:
             print(f"Adding {len(ids)} documents to ChromaDB collection '{COLLECTION_NAME}'...")
-            self.collection.add(
-                embeddings=embeddings.tolist(), # Convert numpy array to list
-                documents=documents,
-                metadatas=metadatas,
-                ids=ids
-            )
-            print("Documents added to ChromaDB.")
+            # Ensure we don't try to add if there are no chunks
+            if ids:
+                self.collection.add(
+                    embeddings=embeddings.tolist(), # Convert numpy array to list
+                    documents=documents,
+                    metadatas=metadatas,
+                    ids=ids
+                )
+                print("Documents added to ChromaDB.")
+            else:
+                print("No chunks to add to ChromaDB.")
         except Exception as e:
             print(f"Error adding documents to ChromaDB: {e}")
 
@@ -67,7 +83,7 @@ class VectorDBManager:
                 include=['documents', 'metadatas']
             )
             context = []
-            if results and results['documents']:
+            if results and results['documents'] and results['documents'][0]:
                 for i, doc_text in enumerate(results['documents'][0]):
                     source = results['metadatas'][0][i]['source']
                     context.append(f"Source: {source}\nContent: {doc_text}")

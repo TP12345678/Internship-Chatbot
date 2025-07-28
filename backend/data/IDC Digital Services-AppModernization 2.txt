@@ -1,0 +1,953 @@
+Application Development &
+Modernization
+
+IDC Technologies Services
+
+Company Highlights
+Global Presence
+
+Industry Certified
+
+Industry Leadership
+
+North America, Europe,
+Australia, Singapore,
+Malaysia, UAE, & India
+
+NMSDC Certified MBE, BBB
+Certified Business, E-Verify
+Certified, ISO 9001:2015, ISO
+27001:2013, ISO 20000-1:2011
+Certified. Also, CMMI Level 3
+Certified.
+
+Seasoned experts & leaders
+trailblazing digital solutions for all
+sectors
+
+Founded
+
+Headquarter
+
+IDC Technologies was
+Founded in 2003
+
+Headquartered in Milpitas,
+CA
+
+No. of Years
+Served
+21 Years
+
+Guiding Innovation with
+Growth & Proven
+Expertise
+5500+ Employees Globally
+
+IDC Technologies
+
+Netherlands
+
+We co-create your Digital Future
+
+London
+
+Canada
+
+Poland
+
+Boston
+
+Staffing, Digital and
+Application services being
+delivered seamlessly with
+global workforce of 5500+
+professionals
+
+Germany
+
+Denver
+San Francisco
+New York
+
+Noida
+Gurugram
+
+Austin
+Mexico
+
+Bengaluru
+
+Dubai
+Washington
+
+Malaysia
+
+Costa Rica
+Abu Dhabi
+
+Singapore
+
+Pune
+
+Agile Transformation
+
+DevOps/SRE
+
+Software Engineering
+
+Application
+Development
+
+Big Data, AI,
+ML, RPA
+
+Chennai
+
+Sydney
+
+Cloud Architecture
+
+Wellington
+
+Automation/
+AIOps
+
+Infrastructure
+Services
+
+Application
+Maintenance
+
+Cyber Security
+
+Our Global Footprint
+21 Years Successive Growth
+
+Welcome to IDC Digital
+Empowering Digital Evolution: As the leading digital and technology division of IDC Technologies, we
+empower organizations to flourish in the digital era with the latest innovations and solutions.
+
+IDC Digital
+Services
+
+IDC Manpower
+Services
+
+IDC TECHNOLOGIES
+IDC Digital’s comprehensive suite of end-to-end digital and smart services addresses all traditional and transformational
+needs. We are a one-stop IT Service Provider for accelerating your business objectives using best-in-class consulting &
+technology solutions.
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+IDC Technologies Services
+
+IDC Digital | Our Offering Stack
+IDC Digital
+Digital Disruption
+
+Application
+Modernization
+
+Platform
+Enablement
+
+Smart Services
+
+Cyber Security
+
+Operations
+Support
+
+Digital Transformation
+
+Omni Channel
+Microservices
+
+DevSecOps
+
+Data Platform
+Transformation
+
+Vulnerability
+Assessment and Pen
+Testing
+
+Managed Support
+
+Strategy And Consulting
+
+Cloud First
+
+Site Reliability
+Engineering
+
+Artificial Intelligence and
+Machine Learning
+
+Managed Detection and
+Response
+
+L1/L2 Outsourcing
+
+Enterprise
+Modernization
+
+Quality Engineering
+
+Observability
+
+Blockchain
+
+IAM and GRC
+
+Operations Management
+
+Multi Speed
+
+Mobile First
+
+Public and Private Cloud
+Services Automation
+
+Business Process
+Automation and RPA
+
+Consulting and Advisory
+
+Operations Reliability
+
+Empowered by IDC Staffing Services
+IDC Technologies
+
+IDC Technologies Services
+
+Business Challenges
+
+TECHNOLOGY ADVANCEMENTS
+
+PERFORMANCE & SCALABILITY
+
+ENHANCING SECURITY
+
+REDUCING MAINTENANCE COSTS
+
+Enhance the application which can
+
+Strengthening
+
+improve
+
+and
+
+applications and protecting data
+
+infrastructure
+
+current and competitive in their
+
+scalability, allowing it to better
+
+sensitivity at multiple layers by
+
+maintenance to cloud provider.
+
+industry.
+
+meet the needs of users.
+
+using a modern framework.
+
+Modernizing
+allows
+
+the
+
+organizations
+
+application
+to
+
+stay
+
+its
+
+performance
+
+the
+
+security
+
+of
+
+Cost optimization by offloading
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+provisioning
+
+and
+
+IDC Technologies Services
+
+Our Strength
+IDC's Global Application Modernization Services allow organizations to capitalize on their existing application investments, maximize IT budgets and minimize the risk of
+adopting new technologies.
+With expertise in DevOps, cloud services, data platforms, and proven modernization strategies, IDC helps organizations achieve their business objectives quickly, lower costs
+and stay within budget while creating high-quality, innovative digital experiences.
+We implement strategies and solutions that keep on-premise infrastructure in sync with cloud platforms. Our comprehensive cloud services include design, proof of
+concept, and testing to ensure a successful migration to the cloud.
+
+Our Industry Agnostic Offering is:
+•Legacy App Modernization
+ Certified Cloud Architect Team
+
+•Cloud Migration
+ Strategic partnership with Leading cloud Providers
+ Standardized across the world
+ Expertise across multiple technologies
+
+•Cloud Native App Development
+•DevSecOps
+
+ Global Presence
+ State-of-the-art tools & systems
+ Application Managed Services
+
+•Automation
+•UI/UX Engineering
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+IDC Technologies Services
+
+IDC Offering – App Modernization
+IDC offers a range of services for modernizing applications, including a comprehensive approach that addresses both the backend functionality and user experience. IDC
+helps move legacy workloads to a modern cloud platform and break down large, monolithic applications into smaller microservices, using modern methodologies such as
+DevOps, Site Reliability Engineering (SRE), and CI/CD as part of the modernization process.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+IDC Technologies Services
+
+IDC Offering – App
+Modernization
+IDC Technologies is well-versed in Agile-based deliveries. We will use an Agile/iterative approach to app modernization and project management(if required) that will help
+teams deliver value to their customers faster.
+Automobile
+SKETCH
+
+BSFI
+UNDERSTAND
+
+- Define the who?
+- Meet with Business Sponsors
+- Understanding of Legacy System
+- Killer Feature/ Capabilities
+
+- Success Criteria for the week
+
+Ideal Team
+
+Product Owner
+
+DECIDE
+
+IMPLEMENTATION
+
+VALIDATE
+
+- Prioritized concept ideas and
+
+- Choose the best idea
+
+- Design Execution
+
+- Refined execution ready for test
+
+themes
+
+- Storyboards/ refined wire-frames
+
+- Risk & Assumptions
+
+- Present Product Vision
+
+- Define User personas
+
+- Business Blueprint / Architecture
+
+- Integration
+
+- Validate Commercials
+
+- Define solution for modernization
+
+Blueprint
+
+- Data / Code Migration
+
+- Training and Support
+
+- First draft wireframes/mock-ups
+
+- Conceptual Architecture
+
+- Deployment
+Output
+
+Tech Architect
+
+Buy‐in from Business on Product Vision
+
+Cloud Architect
+UX Architect
+QA Architect
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+IDC Technologies Services
+
+App Modernization – Our
+Services
+Microservices:
+
+Containers:
+
+IDC modernizes applications by implementing microservice
+
+IDC modernizes applications by utilizing a containerization
+
+patterns. This involves breaking down a monolithic application into
+
+approach, which allows them to run on any platform that
+
+smaller, independent "microservices." Each microservice is a small,
+
+supports containerization technology, without concerns
+
+specialized unit of functionality, making it easier to maintain and
+
+about dependencies or system configuration. IDC employs
+
+update, compared to a large monolithic application. Additionally,
+
+various container runtimes such as Docker, and CIR-O, as well
+
+microservices can be scaled individually, rather than scaling the
+
+entire application, resulting in more efficient resource utilization
+
+as multiple container orchestration tools such as Kubernetes
+and Openshift.
+
+and improved performance.
+
+DevOps:
+IDC implements DevOps automation by utilizing tools such as
+
+Data Modernization:
+
+Jenkins or Terraform to automate repetitive tasks such as
+testing, deployment, and infrastructure provisioning. This
+
+IDC modernizes data for both SQL and No-SQL databases by
+
+enables organizations to quickly and dependably roll out new
+
+synchronizing, replicating, and transferring data. We ensure
+
+features. IDC also employs advanced deployment techniques
+
+that replication on the platform continues to function
+
+like Rolling updates, Canary Releases, and Blue-Green to
+
+seamlessly after migration. IDC also migrates data from on-
+
+achieve zero downtime during deployment.
+
+premises
+
+RDBMS
+
+to
+
+Cloud
+
+RDBMS
+
+and
+
+performs
+
+transformations from RDBMS to No-SQL.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+IDC Technologies Services
+
+App Modernization Solution
+
+IDC provides a comprehensive solution
+to migrate monolithic applications to
+modern, high-performance and scalable
+architecture-based applications.
+
+IDC offers a comprehensive solution to
+address all your cloud migration needs.
+With years of experience, we have a
+proven track record of successfully
+migrating to the cloud.
+
+IDC designs, builds, and manages
+custom, cloud-native applications that
+are driven by business needs.
+
+IDC offers effective services to optimize
+infrastructure for improved performance
+and cost savings.
+
+IDC
+automates
+infrastructure
+to
+minimize manual intervention and
+ensure a highly available system.
+
+IDC's solutions stand out from the
+competition by providing tailored
+solutions that are the best fit for specific
+use cases.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+IDC Technologies Services
+
+Platform Driven Methodology
+for Accelerated Outcomes
+Modern ecosystem reference framework," built from our extensive experience in modernization projects, to create a customized digital transformation plan tailored to the
+client's needs. Our platform-based approach, implemented through a streamlined factory model, guarantees an optimal outcome for each application upon completion.
+Our services include Re-hosting, Re-engineering, APIzation, Software Migration, Data Modernization, and Optimization.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+IDC Technologies Services
+
+Application Modernization
+Features
+People: Optimize human systems
+It is crucial to establish teams that support the delivery of value streams, rather than
+dividing the value stream across departments based on functional roles.
+
+PEOPLE
+
+•
+
+A department of developers, testers, operators
+
+•
+
+Smaller teams with tight interlinkage are higher functioning
+
+•
+
+DevSecOps integrates security throughout the development cycle
+
+Process: Automate the interaction
+between people and technology
+• IDC conducts an application portfolio
+assessment to prioritize applications for
+
+modernization and determine the most
+effective migration strategies.
+• We also establish application archetypes,
+
+PROCESS
+
+Technology
+
+Technology: Support modernization
+• IDC offers a self-service model for Kubernetes or containerized
+applications, which creates a more agile and responsive environment
+
+recurring patterns that serve as a reference
+
+that allows for faster release of new features and services to better
+
+for other applications with similar
+
+adapt to rapid market changes and customer needs.
+
+characteristics within the organization.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+IDC Technologies Services
+
+How we deliver Application
+Modernization
+Before beginning the application modernization process, IDC conducts a requirement-gathering session to gain a deeper understanding of the current system, followed by an assessment that
+collects information on each component in the system.
+We then analyze the input received during the assessment, and subsequently, commence the implementation of the application modernization.
+
+Assessment
+
+Planning
+
+Design
+
+Development
+
+Testing
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+Maintenance
+
+IDC Technologies Services
+
+Agile Transformation Squads
+
+Solutioning
+With a thorough understanding of our clients and the ability to solve complex problems; create
+(technical) solutions; re-imagining the possible.
+
+Orchestration
+Able to orchestrate decision-making by navigating corporate politics throughout the full
+spectrum of stakeholders (C-Suite to engineer); also creating business cases and roadmaps.
+
+Execution
+Driving execution of initiatives through strong (agile) program management skills with a strong
+focus on outcomes: having a solid vision, but striking a delicate balance with being agile. Although
+we will not be coding, we will fire start and drive your initiative.
+
+In addition to these capabilities, it is important to cover all aspects from strategy to infrastructure, in order to fully support these legacy transformations. Next to aligning with the more obvious IT skills in the
+application layer and understanding your IT4IT, it is also crucial to align these IT capabilities with the businesses these capabilities are designed to support. In quite a lot of situations you will need to have a fully
+functional roadmap, with an alternative platform for every single piece of functionality, and put this on the backlog of business.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+IDC Technologies Services
+
+App Modernization: Hamriyah Free Zone
+Authority Sharjah Government
+
+The Objective
+
+Business Need
+
+The IDC Solution
+
+Key Benefits
+
+The client aimed to develop a smart,
+platform-based mobile application
+designed to host a range of essential
+business services. The app's key
+functionalities included features like
+port application approvals, real-time
+senior management notifications,
+and other critical operational
+workflows. This solution was
+envisioned to streamline processes,
+enhance decision-making efficiency,
+and provide a unified digital
+experience for all business
+stakeholders.
+
+The client was looking to
+accelerate ITs innovation strategy
+by converting their monolith
+middleware into containerized
+microservices.
+Client
+was
+completely on- premises, looking
+for a way to move toward their
+cloud-first strategy.
+
+IDC helped the client by
+strangulating existing monolithic
+application
+into
+unique
+microservices that allowed
+smart approval workflows.
+
+• Increased Customer
+Interactions for Senior
+management and above
+• Insulates changes to backend
+systems and enabled reliable
+delivery
+• Reduced time to market
+• 10% reduction in cost for
+release of new features.
+• Canary and feature flagging
+leads to testing in production.
+
+The client was looking for building
+a platform based smart mobile
+app that will hosts common
+business services such as port
+application approvals, senior
+management notifications etc.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+• Usage of API Gateway for
+governed service access from
+all channels brought unified
+standardization.
+• Realtime curated data was
+consumed from EDP and
+Data science models via
+REST API's.
+• Fault tolerant and scalable,
+customized platform leads to
+higher reliability and faster
+delivery.
+
+IDC Technologies Services
+
+Design & Develop software for NSE
+Parivartan Portal
+
+The Objective
+
+Business Need
+
+The IDC Solution
+
+Key Benefits
+
+The client WIPRO sought
+IDC as
+a partnerto develop software for
+NSE Parivartan Portal.
+
+The client was looking to
+accelerate ITs innovation
+strategy by converting their
+manual process into digitally
+automated Portal involving Key
+stakeholders like Listing
+Compliance and Member
+Compliance for Statement of
+Deviation &Variation, Insurance
+Submission and Base Minimum
+Capital.
+
+IDC helped the client by
+strangulating existing monolithic
+application
+into
+unique
+microservices
+that
+allowed
+automated
+workflows
+by
+following SonarQube Standards.
+
+• Parivartan Portal which will be
+largely
+digital
+thereby
+eliminating manual tracking of
+Mails to ANMI and BBF
+Insulates changes to backend
+systems and enabled reliable
+delivery.
+• Simplify data check within
+the application digitally.
+• Automate the manual check
+process.
+• Full project life cycle ownership:
+successful
+project
+delivery
+including full implementation
+from initiation to deployment for
+one major or several minor
+initiatives simultaneously.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+• All
+manual
+checks
+/
+validations and processes
+involved are automated for
+entire process.
+• Technical Design document,
+Development and Unit testing is
+successfully
+covered
+for
+Insurance Submission, BMC and
+Statement of Deviation &
+Variation process.
+
+IDC Technologies Services
+
+Loan Origination System Development
+
+The Objective
+
+Business Need
+
+The IDC Solution
+
+Delivery
+
+Todevelop a robust loan
+origination system that
+would enhance
+operational efficiency,
+improve customer
+satisfaction, and reduce
+the turnaround time for
+loan approvals.
+
+A financial institution identified a
+significant opportunity to
+streamline and automate their
+loan origination process. The
+existing manual process was
+time-consuming, error-prone,
+and led to delays in loan
+approvals, resulting in a
+suboptimalcustomer
+experience.
+
+We developed a comprehensive
+software tailored to the needs of
+the financial institution. The
+solution leveraged modern
+technologies and best practices to
+automate the loan origination
+process.
+
+• AccurateCredit Risk Assessment:
+Integration with credit bureaus
+and advanced credit scoring
+models enhanced the accuracy
+and consistency of credit risk
+assessments.
+• RegulatoryCompliance: The
+software ensured compliance
+with regulatory requirements
+and facilitated smooth
+adherence to industry
+standards. Comprehensive
+audit trails and reports helped
+the financial institution meet
+regulatory obligations and
+simplified regulatory reporting.
+
+The business opportunity was to
+develop a robust loan origination
+system that would enhance
+operational efficiency, improve
+customer satisfaction, and reduce
+the turnaround time for loan
+approvals.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+• Captured and validated
+applicant information,
+supporting various types of
+loans.
+• Incorporated credit scoring
+models and algorithms.
+• A centralized repository to
+manage documents.
+• A seamless collaboration and
+communication.
+
+IDC Technologies Services
+
+Sahatna Mobile App Development
+
+The Objective
+
+Business Need
+
+To provide a comprehensive, userfriendly digital platform that
+empowers individuals to take
+control of their healthcare journey
+by streamlining access to essential
+healthcare services, information,
+and support in a secure and
+convenient manner.
+
+The client seeks an innovative
+solution to simplify healthcare
+processes,
+improve
+patient
+engagement, and ensure seamless
+communication between patients
+and healthcare providers. The app
+addresses the growing demand for
+accessible healthcare services,
+telehealth
+capabilities,
+and
+proactive health management
+tools in a connected and digital-first
+world.
+
+The IDC Solution
+Cloud-Based Microservices
+Architecture: Ensures scalability,
+high availability, and seamless
+integration with external healthcare
+systems like EHR/EMR for secure
+data exchange.
+Mobile Application: A user-friendly
+app enabling patients to schedule
+appointments, access health
+records, track medications, and
+connect via telehealth services
+anytime, anywhere.
+
+Admin Portal: A centralized
+platform for healthcare providers to
+manage appointments, monitor
+patient data, and send timely
+notifications for improved
+operational efficiency.
+
+© 2025 IDC Technologies. All rights reserved - Confidential
+
+Delivery
+• AccurateCredit Risk Assessment:
+Integration with credit bureaus
+and advanced credit scoring
+models enhanced the accuracy
+and consistency of credit risk
+assessments.
+• RegulatoryCompliance: The
+software ensured compliance
+with regulatory requirements
+and facilitated smooth
+adherence to industry
+standards. Comprehensive
+audit trails and reports helped
+the financial institution meet
+regulatory obligations and
+simplified regulatory reporting.
+
+IDC Technologies Services
+
+Thank You
+
+IDC Technologies Services
+
+

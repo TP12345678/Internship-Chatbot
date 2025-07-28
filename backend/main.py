@@ -4,9 +4,20 @@ from text_processor import chunk_text
 from embedding_manager import EmbeddingManager
 from vector_db_manager import VectorDBManager
 from llm_manager import LLMManager
+import os
 
 def main():
-    print("Starting Chatbot Setup")
+    print("--- Starting Chatbot Setup ---")
+
+    # --- Production Settings ---
+    # Set to None to process all files in DATA_FOLDER.
+    SINGLE_FILE_TO_DEBUG = None 
+    
+    # Set to True if you have added/modified data in the 'data' folder
+    # and want to force ChromaDB to re-ingest everything.
+    # Set to False for faster subsequent runs if data hasn't changed.
+    FORCE_CHROMA_REINGESTION = True # <--- Set to False for normal operation
+    # ---------------------------
 
     # Initialize managers
     embedding_manager = EmbeddingManager()
@@ -19,49 +30,60 @@ def main():
         return
 
     # Step 1: Load and Extract Documents
-    print("\n Loading and Extracting Documents")
-    documents = load_documents_from_folder(DATA_FOLDER)
+    print("\n--- Step 1: Loading and Extracting Documents ---")
+    
+    # Pass single_file_path=None to load all documents from the data_folder
+    documents = load_documents_from_folder(DATA_FOLDER, single_file_path=SINGLE_FILE_TO_DEBUG)
+    
     if not documents:
-        print("No documents found or extracted. Please ensure your 'data' folder contains supported files (PDF, PPTX, CSV, TXT).")
+        print("No documents found or extracted. Please ensure your 'data' folder contains supported files (PDF, PPTX, CSV, TXT, common images).")
         print("Exiting.")
         return
 
     # Step 2: Chunk and Clean Text
-    print("\nChunking and Cleaning Text")
+    print("\n--- Step 2: Chunking and Cleaning Text ---")
     chunks = chunk_text(documents)
     if not chunks:
         print("No chunks created. This might indicate an issue with text extraction or cleaning.")
         print("Exiting.")
         return
 
+    # --- Removed: DEBUGGING OUTPUT: Print all chunks ---
+    # This section is removed for production use.
+
     # Step 3: Create Embeddings
-    print("\nCreating Embeddings")
+    print("\n--- Step 3: Creating Embeddings ---")
     embeddings = embedding_manager.create_embeddings(chunks)
     if embeddings is None:
         print("Failed to create embeddings. Exiting.")
         return
 
     # Step 4: Add Documents to ChromaDB
-    print("\nAdding Documents to ChromaDB")
-    vector_db_manager.add_documents(embeddings, chunks)
+    print("\n--- Step 4: Adding Documents to ChromaDB ---")
+    vector_db_manager.add_documents(embeddings, chunks, force_reingestion=FORCE_CHROMA_REINGESTION)
 
-    print("\nChatbot Setup Complete! You can now ask questions.")
+    print("\n--- Chatbot Setup Complete! You can now ask questions. ---")
     print("Type 'exit' to quit the chatbot.")
 
     # Step 5: Start Query Loop
     while True:
         user_query = input("\nYour question: ")
         if user_query.lower() == 'exit':
-            print("Goodbye!")
+            print("Exiting chatbot. Goodbye!")
             break
 
         # Retrieve context from ChromaDB
-        relevant_context = vector_db_manager.retrieve_context(user_query)
+        relevant_context = vector_db_manager.retrieve_context(user_query, n_results=5)
 
-        if not relevant_context:
-            print("No relevant information found in the knowledge base for your query.")
-            continue
-
+        # --- Removed: DEBUGGING OUTPUT: Print Retrieved Context ---
+        # This section is removed for production use.
+        # print("\n--- Retrieved Context for current query ---")
+        # if relevant_context:
+        #     for i, item in enumerate(relevant_context):
+        #         print(f"Context {i+1}:\n{item}\n---")
+        # else:
+        #     print("No relevant context found in ChromaDB for this query.")
+        # print("-------------------------------------------\n")
         # Generate response using Gemini
         response = llm_manager.generate_response(user_query, relevant_context)
         print("\nChatbot:", response)
