@@ -1,7 +1,11 @@
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
 
 # --- General Configuration ---
-GEMINI_API_KEY = "AIzaSyAMSNFVUeA_eMv-CMNXxQi0ab9WSSAUXYI" 
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # Reads from .env
 
 # Folder where your company's data files (PDF, PPTX, CSV, TXT) are stored
 DATA_FOLDER = "./data"
