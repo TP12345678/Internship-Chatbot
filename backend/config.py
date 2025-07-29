@@ -8,7 +8,7 @@ load_dotenv()
 GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")  # Reads from .env
 
 # Folder where your company's data files (PDF, PPTX, CSV, TXT) are stored
-DATA_FOLDER = "./data"
+DATA_FOLDER = os.path.join(os.path.dirname(__file__), "data")
 
 # Path to store ChromaDB persistent data
 CHROMA_DB_PATH = "./chroma_db"

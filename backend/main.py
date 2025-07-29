@@ -1,5 +1,6 @@
 # main.py
 
+
 from config import DATA_FOLDER, GEMINI_API_KEY
 from data_loader import load_documents_from_folder
 from text_processor import chunk_text
