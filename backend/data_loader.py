@@ -6,10 +6,9 @@ from pptx.enum.shapes import MSO_SHAPE_TYPE
 import pytesseract
 from PIL import Image, UnidentifiedImageError
 import io
-import tempfile
-import shutil
+import re # New import for regular expressions
 
-# Text Extraction Functions 
+# --- Text Extraction Functions ---
 
 def extract_text_from_pdf(pdf_path):
     """Extracts text from a PDF file."""
@@ -43,7 +42,6 @@ def extract_text_from_image(image_path_or_bytes, source_info=""):
         print("Tesseract-OCR is not installed or not in your system's PATH.")
         print("Please install Tesseract-OCR. See the main response for instructions.")
         print("-----------------\n")
-        raise
     except UnidentifiedImageError:
         raise UnidentifiedImageError(
             f"Pillow cannot identify or load this image format for {source_info}. "
@@ -62,68 +60,31 @@ def extract_text_from_pptx(pptx_path):
     Extracts text from a PPTX file (slides, notes, and performs OCR on embedded images).
     """
     text = ""
-    print(f"  Processing PPTX: {pptx_path}")
     try:
         prs = Presentation(pptx_path)
         for slide_idx, slide in enumerate(prs.slides):
-            slide_text_content = ""
-            print(f"    --- Processing Slide {slide_idx + 1} ---")
+            text += f"\n--- Slide {slide_idx + 1} ---\n"
             for shape_idx, shape in enumerate(slide.shapes):
-                shape_info = f"Slide {slide_idx + 1}, Shape {shape_idx + 1} (Type: {shape.shape_type.name})"
-                
                 if hasattr(shape, "text"):
-                    if shape.text.strip():
-                        slide_text_content += shape.text + "\n"
-                        print(f"      Found text in {shape_info}: '{shape.text.strip()[:50]}...'")
-                    else:
-                        print(f"      Found empty text in {shape_info}.")
+                    text += shape.text + "\n"
                 elif shape.shape_type == MSO_SHAPE_TYPE.PICTURE:
                     image_bytes = shape.image.blob
-                    temp_image_dir = None
+                    source_info = f"slide {slide_idx + 1}, shape {shape_idx + 1} (bytes_len: {len(image_bytes)})"
                     try:
-                        source_info = f"slide {slide_idx + 1}, shape {shape_idx + 1} (bytes_len: {len(image_bytes)})"
-                        
                         ocr_text = extract_text_from_image(image_bytes, source_info)
-                        if ocr_text.strip():
-                            slide_text_content += f"[OCR from image on {source_info.split(' (bytes_len:')[0]}]:\n{ocr_text}\n"
-                            print(f"      OCR extracted text from image in {shape_info}: '{ocr_text.strip()[:50]}...'")
-                        else:
-                            print(f"      OCR found no text in image in {shape_info}.")
+                        if ocr_text:
+                            text += f"[OCR from image on {source_info.split(' (bytes_len:')[0]}]:\n{ocr_text}\n"
                     except UnidentifiedImageError as uie:
-                        if image_bytes:
-                            temp_image_dir = tempfile.mkdtemp(prefix="unsupported_img_")
-                            temp_image_path = os.path.join(temp_image_dir, f"slide_{slide_idx+1}_shape_{shape_idx+1}_raw_image.bin")
-                            with open(temp_image_path, 'wb') as f:
-                                f.write(image_bytes)
-                            print(f"  Error processing image on {shape_info}: {uie} Raw image data saved to: {temp_image_path}. Please inspect this file. Convert to PNG/JPG for OCR.")
-                        else:
-                            print(f"  Error processing image on {shape_info}: {uie} (No image bytes found).")
+                        print(f"  Error processing image on {source_info}: {uie} Please convert it to PNG/JPG for OCR.")
                     except Exception as img_e:
-                        print(f"  Error processing image on {shape_info}: {img_e}")
-                    finally:
-                        if temp_image_dir and os.path.exists(temp_image_dir):
-                            try:
-                                shutil.rmtree(temp_image_dir)
-                            except OSError as e:
-                                print(f"Error deleting temporary directory {temp_image_dir}: {e}")
-                else:
-                    print(f"      Skipping non-text/non-picture shape: {shape_info}")
+                        print(f"  Error processing image on {source_info}: {img_e}")
 
             if slide.has_notes_slide:
                 notes_slide = slide.notes_slide
                 notes_text_frame = notes_slide.notes_text_frame
-                if notes_text_frame and notes_text_frame.text.strip():
-                    slide_text_content += f"\n--- Notes for Slide {slide_idx + 1} ---\n"
-                    slide_text_content += notes_text_frame.text + "\n"
-                    print(f"      Found notes text for Slide {slide_idx + 1}: '{notes_text_frame.text.strip()[:50]}...'")
-                else:
-                    print(f"      No notes text found for Slide {slide_idx + 1}.")
-            
-            if slide_text_content.strip():
-                text += slide_text_content + "\n"
-            else:
-                print(f"    Slide {slide_idx + 1} yielded no extractable text.")
-
+                if notes_text_frame and notes_text_frame.text:
+                    text += f"\n--- Notes for Slide {slide_idx + 1} ---\n"
+                    text += notes_text_frame.text + "\n"
     except Exception as e:
         print(f"Error extracting text from PPTX {pptx_path}: {e}")
     return text
@@ -148,39 +109,75 @@ def extract_text_from_txt(txt_path):
         print(f"Error extracting text from TXT {txt_path}: {e}")
     return text
 
+def split_document_by_case_study(full_text, source_path):
+    """
+    Splits a large document's text into smaller "documents" based on "Case Study :" headers.
+    Each resulting split is treated as a new document for chunking.
+    """
+    # Use a regex to split the text. re.split keeps the delimiter if it's in a capturing group.
+    # We want to keep the "Case Study :" header at the beginning of each new split.
+    # The pattern looks for "\nCase Study : " to ensure it's a new line.
+    case_study_splits = re.split(r'(\nCase Study : )', full_text)
+    
+    # The first element might be content before the first case study.
+    # Subsequent elements will be alternating delimiter and content.
+    
+    # Reassemble the splits to keep the delimiter with the following content
+    processed_splits = []
+    current_segment = ""
+    for i, segment in enumerate(case_study_splits):
+        if segment.startswith('\nCase Study : '):
+            if current_segment: # If there's accumulated content, add it as a document
+                processed_splits.append(current_segment.strip())
+            current_segment = segment # Start a new segment with the delimiter
+        else:
+            current_segment += segment
+    
+    if current_segment: # Add the last accumulated segment
+        processed_splits.append(current_segment.strip())
+
+    # If no case studies found, return the original text as a single document
+    if len(processed_splits) <= 1 and not processed_splits[0].startswith('Case Study : '):
+        return [{"text": full_text, "source": source_path}]
+
+    documents_from_split = []
+    for i, split_text in enumerate(processed_splits):
+        if split_text: # Ensure the split is not empty
+            # Extract the case study name for better metadata/source identification
+            match = re.search(r'Case Study : ([^\n]+)', split_text)
+            case_study_name = match.group(1).strip() if match else f"Unnamed Case Study {i+1}"
+            documents_from_split.append({
+                "text": split_text,
+                "source": f"{source_path} (Case Study: {case_study_name})"
+            })
+    return documents_from_split
+
+
 def load_documents_from_folder(data_folder, single_file_path=None):
     """
-    Loads and extracts text from documents.
-    If single_file_path is provided, processes only that file.
-    Otherwise, loads from the entire data_folder.
+    Loads and extracts text from all supported documents in the specified folder,
+    including OCR for images. It also pre-processes specific documents (like the corporate deck)
+    to split them by case study headers.
     Returns a list of dictionaries, each containing 'text' and 'source'.
     """
     documents = []
-    
+    if not os.path.exists(data_folder):
+        print(f"Data folder '{data_folder}' not found. Please create it and add your data.")
+        return documents
+
+    image_extensions = [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tiff"]
+
     files_to_process = []
     if single_file_path:
-        if os.path.exists(single_file_path):
-            files_to_process.append(single_file_path)
-            print(f"Processing only the specified file: {single_file_path}")
-        else:
-            print(f"Error: Single file path '{single_file_path}' not found.")
-            return documents
+        files_to_process.append(single_file_path)
     else:
-        if not os.path.exists(data_folder):
-            print(f"Data folder '{data_folder}' not found. Please create it and add your data.")
-            return documents
         for root, _, files in os.walk(data_folder):
             for file_name in files:
                 files_to_process.append(os.path.join(root, file_name))
-        print(f"Processing all files in data folder: {data_folder}")
-
-    image_extensions = [".png", ".jpg", ".jpeg", ".gif", ".bmp", ".tiff"]
 
     for file_path in files_to_process:
         file_extension = os.path.splitext(file_path)[1].lower()
         extracted_text = ""
-
-        print(f"\nProcessing file: {file_path}")
 
         if file_extension == ".pdf":
             extracted_text = extract_text_from_pdf(file_path)
@@ -202,9 +199,15 @@ def load_documents_from_folder(data_folder, single_file_path=None):
             print(f"Skipping unsupported file type: {file_name}")
             continue
 
-        if extracted_text.strip():
-            documents.append({"text": extracted_text, "source": file_path})
-            print(f"Successfully extracted text from: {file_path}")
-        else:
-            print(f"No significant text extracted from: {file_path}")
+        if extracted_text:
+            # Apply specific splitting logic for the corporate deck if it's the one
+            # containing multiple case studies that need explicit separation.
+            # Adjust this condition if your corporate deck has a different name.
+            if "IDC Digital Corporate Deck- Middle East- V1 (1).txt" in file_path:
+                print(f"Applying case study splitting for: {file_path}")
+                split_docs = split_document_by_case_study(extracted_text, file_path)
+                documents.extend(split_docs)
+            else:
+                documents.append({"text": extracted_text, "source": file_path})
+            print(f"Extracted text from: {file_path}")
     return documents

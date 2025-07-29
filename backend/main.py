@@ -1,22 +1,25 @@
+# main.py
+
 from config import DATA_FOLDER, GEMINI_API_KEY
 from data_loader import load_documents_from_folder
 from text_processor import chunk_text
 from embedding_manager import EmbeddingManager
 from vector_db_manager import VectorDBManager
 from llm_manager import LLMManager
-import os
+import os # Import os for path handling
 
 def main():
     print("--- Starting Chatbot Setup ---")
 
     # --- Production Settings ---
     # Set to None to process all files in DATA_FOLDER.
-    SINGLE_FILE_TO_DEBUG = None 
+    # For debugging a single file, set its path here (e.g., "./data/your_file.txt")
+    SINGLE_FILE_TO_DEBUG = None # <--- Set to None for normal operation
     
     # Set to True if you have added/modified data in the 'data' folder
     # and want to force ChromaDB to re-ingest everything.
     # Set to False for faster subsequent runs if data hasn't changed.
-    FORCE_CHROMA_REINGESTION = True # <--- Set to False for normal operation
+    FORCE_CHROMA_REINGESTION = False # <--- Set to False for normal operation
     # ---------------------------
 
     # Initialize managers
@@ -32,7 +35,7 @@ def main():
     # Step 1: Load and Extract Documents
     print("\n--- Step 1: Loading and Extracting Documents ---")
     
-    # Pass single_file_path=None to load all documents from the data_folder
+    # Pass single_file_path to load_documents_from_folder
     documents = load_documents_from_folder(DATA_FOLDER, single_file_path=SINGLE_FILE_TO_DEBUG)
     
     if not documents:
@@ -50,6 +53,16 @@ def main():
 
     # --- Removed: DEBUGGING OUTPUT: Print all chunks ---
     # This section is removed for production use.
+    # If you need to debug chunks again, temporarily uncomment this block.
+    # print("\n--- ALL GENERATED CHUNKS (from file(s)) ---")
+    # for i, chunk in enumerate(chunks):
+    #     print(f"Chunk {i+1} (Source: {chunk['source']}):")
+    #     print(f"ID: {chunk['id']}")
+    #     print("Content:")
+    #     print(f"{chunk['text']}")
+    #     print("---")
+    # print("-------------------------------------------\n")
+
 
     # Step 3: Create Embeddings
     print("\n--- Step 3: Creating Embeddings ---")
@@ -77,6 +90,7 @@ def main():
 
         # --- Removed: DEBUGGING OUTPUT: Print Retrieved Context ---
         # This section is removed for production use.
+        # If you need to debug retrieved context again, temporarily uncomment this block.
         # print("\n--- Retrieved Context for current query ---")
         # if relevant_context:
         #     for i, item in enumerate(relevant_context):
@@ -84,6 +98,7 @@ def main():
         # else:
         #     print("No relevant context found in ChromaDB for this query.")
         # print("-------------------------------------------\n")
+
         # Generate response using Gemini
         response = llm_manager.generate_response(user_query, relevant_context)
         print("\nChatbot:", response)
