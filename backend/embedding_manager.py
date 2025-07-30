@@ -15,7 +15,7 @@ class EmbeddingManager:
         except Exception as e:
             print(f"Error loading embedding model: {e}")
             print("Please ensure you have an active internet connection or the model is cached locally.")
-            self.model = None # Ensure model is None if loading fails
+            self.model = None 
 
     def get_model(self):
         """Returns the loaded embedding model."""

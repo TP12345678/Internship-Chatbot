@@ -1,7 +1,7 @@
 Application Development & Modernization
 
 Company Highlights
-------------------
+
 Our Global Presence: North America, Europe, Australia, Singapore, Malaysia, UAE, & India
 
 Industry Certified: NMSDC Certified MBE, BBB Certified Business, E-Verify Certified, ISO 9001:2015, ISO 27001:2013, ISO 20000-1:2011 Certified. Also, CMMI Level 3 Certified.
@@ -15,7 +15,7 @@ No. of Years Served: 21 Years
 Guiding Innovation: With Growth & Proven Expertise with 5500+ Employees Globally
 
 IDC Technologies's Global Presence (Detailed List):
---------------------------------------------------
+
 Netherlands
 London
 Canada
@@ -42,7 +42,7 @@ Sydney
 Wellington
 
 Areas we work in:
------------------
+
 Agile Transformation
 DevOps/SRE
 Software Engineering
@@ -55,7 +55,7 @@ Application Maintenance
 Cyber Security
 
 Our Offering Stack (The six pillars of IDC):
--------------------------------------------
+
 Digital Disruption
 Digital Transformation
 Strategy And Consulting
@@ -90,14 +90,14 @@ Operations Reliability
 IDC Digital’s comprehensive suite of end-to-end digital and smart services addresses all traditional and transformational needs. We are a one-stop IT Service Provider for accelerating your business objectives using best-in-class consulting & technology solutions.
 
 Business Challenges
--------------------
+
 1. Technology Advancements: Modernizing the application allows organizations to stay current and competitive in their industry.
 2. Performance & Scalability: Enhance the application which can improve its performance and scalability, allowing it to better meet the needs of users.
 3. Enhancing Security: Strengthening the security of applications and protecting data sensitivity at multiple layers by using a modern framework.
 4. Reducing Maintenance Costs: Cost optimization by offloading infrastructure provisioning and maintenance to cloud provider.
 
 IDC's Strength
---------------
+
 IDC's Global Application Modernization Services allow organizations to capitalize on their existing application investments, maximize IT budgets and minimize the risk of adopting new technologies.
 With expertise in DevOps, cloud services, data platforms, and proven modernization strategies, IDC helps organizations achieve their business objectives quickly, lower costs and stay within budget while creating high-quality, innovative digital experiences.
 We implement strategies and solutions that keep on-premise infrastructure in sync with cloud platforms. Our comprehensive cloud services include design, proof of concept, and testing to ensure a successful migration to the cloud.
@@ -112,13 +112,13 @@ Our industry agnostic offering is the following:
 - Application Managed Services
 
 IDC Offering – App Modernization
---------------------------------
+
 IDC offers a range of services for modernizing applications, including a comprehensive approach that addresses both the backend functionality and user experience. IDC helps move legacy workloads to a modern cloud platform and break down large, monolithic applications into smaller microservices, using modern methodologies such as DevOps, Site Reliability Engineering (SRE), and CI/CD as part of the modernization process.
 
 IDC Technologies is well-versed in Agile-based deliveries. We will use an Agile/iterative approach to app modernization and project management (if required) that will help teams deliver value to their customers faster.
 
 IDC's Services in App Modernization:
-------------------------------------
+
 **Microservices:**
 IDC modernizes applications by implementing microservice patterns. This involves breaking down a monolithic application into smaller, independent "microservices." Each microservice is a small, specialized unit of functionality, making it easier to maintain and update, compared to a large monolithic application. Additionally, microservices can be scaled individually, rather than scaling the entire application, resulting in more efficient resource utilization and improved performance.
 
@@ -132,7 +132,7 @@ IDC modernizes applications by utilizing a containerization approach, which allo
 IDC modernizes data for both SQL and No-SQL databases by synchronizing, replicating, and transferring data. We ensure that replication on the platform continues to function seamlessly after migration. IDC also migrates data from on-premises RDBMS to Cloud RDBMS and performs transformations from RDBMS to No-SQL.
 
 IDC's App Modernization Solution:
----------------------------------
+
 - IDC provides a comprehensive solution to migrate monolithic applications to modern, high-performance and scalable architecture-based applications.
 - IDC offers a comprehensive solution to address all your cloud migration needs. With years of experience, we have a proven track record of successfully migrating to the cloud.
 - IDC designs, builds, and manages custom, cloud-native applications that are driven by business needs.
@@ -141,11 +141,11 @@ IDC's App Modernization Solution:
 - IDC's solutions stand out from the competition by providing tailored solutions that are the best fit for specific use cases.
 
 Platform Driven Methodology for Accelerated Outcomes:
-----------------------------------------------------
+
 A "Modern ecosystem reference framework," built from our extensive experience in modernization projects, to create a customized digital transformation plan tailored to the client's needs. Our platform-based approach, implemented through a streamlined factory model, guarantees an optimal outcome for each application upon completion. Our services include Re-hosting, Re-engineering, APIzation, Software Migration, Data Modernization, and Optimization.
 
 Application Modernization Features:
-----------------------------------
+
 **Process: Automate the interaction between people and technology**
 IDC conducts an application portfolio assessment to prioritize applications for modernization and determine the most effective migration strategies.
 We also establish application archetypes, recurring patterns that serve as a reference for other applications with similar characteristics within the organization.
@@ -160,11 +160,11 @@ DevSecOps integrates security throughout the development cycle
 IDC offers a self-service model for Kubernetes or containerized applications, which creates a more agile and responsive environment that allows for faster release of new features and services to better adapt to rapid market changes and customer needs.
 
 How we deliver Application Modernization:
-----------------------------------------
+
 Before beginning the application modernization process, IDC conducts a requirement-gathering session to gain a deeper understanding of the current system, followed by an assessment that collects information on each component in the system. We then analyze the input received during the assessment, and subsequently, commence the implementation of the application modernization.
 
 Agile Transformation Squads:
-----------------------------
+
 **Solutioning:** With a thorough understanding of our clients and the ability to solve complex problems; create (technical) solutions; re-imagining the possible.
 
 **Orchestration:** Able to orchestrate decision-making by navigating corporate politics throughout the full spectrum of stakeholders (C-Suite to engineer); also creating business cases and roadmaps.
@@ -174,7 +174,7 @@ Agile Transformation Squads:
 In addition to these capabilities, it is important to cover all aspects from strategy to infrastructure, in order to fully support these legacy transformations. Next to aligning with the more obvious IT skills in the application layer and understanding your IT4IT, it is also crucial to align these IT capabilities with the businesses these capabilities are designed to support. In quite a lot of situations you will need to have a fully functional roadmap, with an alternative platform for every single piece of functionality, and put this on the backlog of business.
 
 App Modernization for Hamriyah Free Zone Authority Sharjah Government (Case Study):
-----------------------------------------------------------------------------------
+
 **The Objective:**
 The client aimed to develop a smart, platform-based mobile application designed to host a range of essential business services. The app's key functionalities included features like port application approvals, real-time senior management notifications, and other critical operational workflows. This solution was envisioned to streamline processes, enhance decision-making efficiency, and provide a unified digital experience for all business stakeholders.
 
@@ -194,7 +194,7 @@ Canary and feature flagging leads to testing in production.
 **Technologies Used:** .NET Core, Okta and Flutter
 
 Design & Develop software for NSE Parivartan Portal (Case Study):
-----------------------------------------------------------------
+
 **The Objective:**
 The client WIPRO sought IDC as a partner to develop software for NSE Parivartan Portal.
 
@@ -215,7 +215,7 @@ Full project life cycle ownership: successful project delivery including full im
 **Technologies Used:** Java, Oracle, CI and CD Pipeline, Jenkins, apigee, ATS and Oracle Database
 
 Loan Origination System Development (Case Study):
------------------------------------------------
+
 **The Objective:**
 To develop a robust loan origination system that would enhance operational efficiency, improve customer satisfaction, and reduce the turnaround time for loan approvals.
 
@@ -236,7 +236,7 @@ Regulatory Compliance: The software ensured compliance with regulatory requireme
 **Technologies Used:** MongoDB, Express JS, React JS and Node JS.
 
 Sahatna Mobile App Development (Case Study):
-------------------------------------------
+
 **The Objective:**
 To provide a comprehensive, user-friendly digital platform that empowers individuals to take control of their healthcare journey by streamlining access to essential healthcare services, information, and support in a secure and convenient manner.
 

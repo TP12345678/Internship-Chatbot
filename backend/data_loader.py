@@ -6,9 +6,8 @@ from pptx.enum.shapes import MSO_SHAPE_TYPE
 import pytesseract
 from PIL import Image, UnidentifiedImageError
 import io
-import re # New import for regular expressions
+import re 
 
-# --- Text Extraction Functions ---
 
 def extract_text_from_pdf(pdf_path):
     """Extracts text from a PDF file."""
@@ -114,36 +113,27 @@ def split_document_by_case_study(full_text, source_path):
     Splits a large document's text into smaller "documents" based on "Case Study :" headers.
     Each resulting split is treated as a new document for chunking.
     """
-    # Use a regex to split the text. re.split keeps the delimiter if it's in a capturing group.
-    # We want to keep the "Case Study :" header at the beginning of each new split.
-    # The pattern looks for "\nCase Study : " to ensure it's a new line.
     case_study_splits = re.split(r'(\nCase Study : )', full_text)
     
-    # The first element might be content before the first case study.
-    # Subsequent elements will be alternating delimiter and content.
-    
-    # Reassemble the splits to keep the delimiter with the following content
     processed_splits = []
     current_segment = ""
     for i, segment in enumerate(case_study_splits):
         if segment.startswith('\nCase Study : '):
-            if current_segment: # If there's accumulated content, add it as a document
+            if current_segment: 
                 processed_splits.append(current_segment.strip())
-            current_segment = segment # Start a new segment with the delimiter
+            current_segment = segment 
         else:
             current_segment += segment
     
-    if current_segment: # Add the last accumulated segment
+    if current_segment: 
         processed_splits.append(current_segment.strip())
 
-    # If no case studies found, return the original text as a single document
     if len(processed_splits) <= 1 and not processed_splits[0].startswith('Case Study : '):
         return [{"text": full_text, "source": source_path}]
 
     documents_from_split = []
     for i, split_text in enumerate(processed_splits):
-        if split_text: # Ensure the split is not empty
-            # Extract the case study name for better metadata/source identification
+        if split_text: 
             match = re.search(r'Case Study : ([^\n]+)', split_text)
             case_study_name = match.group(1).strip() if match else f"Unnamed Case Study {i+1}"
             documents_from_split.append({
@@ -200,9 +190,6 @@ def load_documents_from_folder(data_folder, single_file_path=None):
             continue
 
         if extracted_text:
-            # Apply specific splitting logic for the corporate deck if it's the one
-            # containing multiple case studies that need explicit separation.
-            # Adjust this condition if your corporate deck has a different name.
             if "IDC Digital Corporate Deck- Middle East- V1 (1).txt" in file_path:
                 print(f"Applying case study splitting for: {file_path}")
                 split_docs = split_document_by_case_study(extracted_text, file_path)
