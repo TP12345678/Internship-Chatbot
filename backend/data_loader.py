@@ -10,7 +10,6 @@ import re
 
 
 def extract_text_from_pdf(pdf_path):
-    """Extracts text from a PDF file."""
     text = ""
     try:
         reader = PdfReader(pdf_path)
@@ -21,10 +20,7 @@ def extract_text_from_pdf(pdf_path):
     return text
 
 def extract_text_from_image(image_path_or_bytes, source_info=""):
-    """
-    Extracts text from an image file or bytes using OCR (Optical Character Recognition).
-    Requires Tesseract-OCR to be installed on the system.
-    """
+  
     text = ""
     img = None
     try:
@@ -37,9 +33,9 @@ def extract_text_from_image(image_path_or_bytes, source_info=""):
 
         text = pytesseract.image_to_string(img)
     except pytesseract.TesseractNotFoundError:
-        print("\n--- OCR Error ---")
-        print("Tesseract-OCR is not installed or not in your system's PATH.")
-        print("Please install Tesseract-OCR. See the main response for instructions.")
+        print("\nOCR Error")
+        print("Tesseract OCR is not installed.")
+        print("Please install Tesseract-OCR")
         print("-----------------\n")
     except UnidentifiedImageError:
         raise UnidentifiedImageError(
@@ -55,9 +51,6 @@ def extract_text_from_image(image_path_or_bytes, source_info=""):
     return text
 
 def extract_text_from_pptx(pptx_path):
-    """
-    Extracts text from a PPTX file (slides, notes, and performs OCR on embedded images).
-    """
     text = ""
     try:
         prs = Presentation(pptx_path)
@@ -89,7 +82,6 @@ def extract_text_from_pptx(pptx_path):
     return text
 
 def extract_text_from_csv(csv_path):
-    """Extracts text from a CSV file by reading all cells."""
     text = ""
     try:
         df = pd.read_csv(csv_path)
@@ -99,7 +91,6 @@ def extract_text_from_csv(csv_path):
     return text
 
 def extract_text_from_txt(txt_path):
-    """Extracts text from a TXT file."""
     text = ""
     try:
         with open(txt_path, 'r', encoding='utf-8') as f:
@@ -109,10 +100,6 @@ def extract_text_from_txt(txt_path):
     return text
 
 def split_document_by_case_study(full_text, source_path):
-    """
-    Splits a large document's text into smaller "documents" based on "Case Study :" headers.
-    Each resulting split is treated as a new document for chunking.
-    """
     case_study_splits = re.split(r'(\nCase Study : )', full_text)
     
     processed_splits = []
@@ -144,12 +131,7 @@ def split_document_by_case_study(full_text, source_path):
 
 
 def load_documents_from_folder(data_folder, single_file_path=None):
-    """
-    Loads and extracts text from all supported documents in the specified folder,
-    including OCR for images. It also pre-processes specific documents (like the corporate deck)
-    to split them by case study headers.
-    Returns a list of dictionaries, each containing 'text' and 'source'.
-    """
+
     documents = []
     if not os.path.exists(data_folder):
         print(f"Data folder '{data_folder}' not found. Please create it and add your data.")

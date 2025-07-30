@@ -6,7 +6,6 @@ class VectorDBManager:
     """Manages interactions with ChromaDB."""
     def __init__(self):
         self.client = PersistentClient(path=CHROMA_DB_PATH)
-        # Define the embedding function for ChromaDB to ensure consistency
         self.embedding_function = embedding_functions.SentenceTransformerEmbeddingFunction(
             model_name=EMBEDDING_MODEL_NAME
         )
@@ -35,10 +34,9 @@ class VectorDBManager:
             print(f"ChromaDB collection '{COLLECTION_NAME}' already contains {self.collection.count()} documents. Skipping re-ingestion. To force re-ingestion, set force_reingestion=True.")
             return
         
-        # If force_reingestion is True, or collection is empty, clear it first
+       
         if self.collection.count() > 0 and force_reingestion:
             print(f"Force re-ingestion requested. Deleting existing {self.collection.count()} documents from '{COLLECTION_NAME}'.")
-            # A simpler way to clear all documents is to delete and re-create the collection
             self.client.delete_collection(name=COLLECTION_NAME)
             self.collection = self.client.get_or_create_collection(
                 name=COLLECTION_NAME,
@@ -53,10 +51,9 @@ class VectorDBManager:
 
         try:
             print(f"Adding {len(ids)} documents to ChromaDB collection '{COLLECTION_NAME}'...")
-            # Ensure we don't try to add if there are no chunks
             if ids:
                 self.collection.add(
-                    embeddings=embeddings.tolist(), # Convert numpy array to list
+                    embeddings=embeddings.tolist(),
                     documents=documents,
                     metadatas=metadatas,
                     ids=ids

@@ -5,7 +5,6 @@ from langchain.memory import ConversationBufferMemory
 from langchain_core.messages import HumanMessage, AIMessage
 
 class LLMManager:
-    """Manages interactions with the Gemini LLM and conversation memory."""
     def __init__(self):
         if not GEMINI_API_KEY or GEMINI_API_KEY == "YOUR_GEMINI_API_KEY":
             print("Error: Gemini API Key is not set in config.py. Please update it.")
@@ -28,11 +27,7 @@ class LLMManager:
                 self.memory = None
 
     def generate_response(self, query, context):
-        """
-        Generates a summarized, friendly, and polite response using Gemini
-        based on the query and retrieved context, incorporating conversation history.
-        Includes checks for specific redirections.
-        """
+
         if not self.model or not self.memory:
             return "I cannot generate a response because the Gemini model or memory is not properly initialized."
 

@@ -2,13 +2,11 @@ from sentence_transformers import SentenceTransformer
 from config import EMBEDDING_MODEL_NAME
 
 class EmbeddingManager:
-    """Manages the embedding model and generates embeddings."""
     def __init__(self):
         self.model = None
         self._load_model()
 
     def _load_model(self):
-        """Initializes and loads the Sentence Transformer model."""
         try:
             self.model = SentenceTransformer(EMBEDDING_MODEL_NAME)
             print(f"Loaded embedding model: {EMBEDDING_MODEL_NAME}")
@@ -18,11 +16,9 @@ class EmbeddingManager:
             self.model = None 
 
     def get_model(self):
-        """Returns the loaded embedding model."""
         return self.model
 
     def create_embeddings(self, chunks):
-        """Generates embeddings for a list of text chunks."""
         if not self.model:
             print("Embedding model not loaded. Cannot create embeddings.")
             return None
